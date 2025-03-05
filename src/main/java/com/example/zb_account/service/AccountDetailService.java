@@ -26,7 +26,14 @@ public class AccountDetailService {
             throw new CustomException(CustomError.NO_USER_FOUND);
         }
         SecureRandom random = new SecureRandom();
-        long randomNumber = 1_000_000_000L + random.nextLong(9_000_000_000L);
+        long randomNumber = 0L;
+        while(true){
+            //중복체크
+            randomNumber = 1_000_000_000L + random.nextLong(9_000_000_000L);
+            if(accountDetailRepository.getAccount(Long.toString(randomNumber))){
+                break;
+            }
+        }
         Account newAccount = accountDetailRepository.createAccount(currentAccountUser, Long.toString(randomNumber), accountCreateRequestDTO.getMoney());
 
         return new AccountCreateResponseDTO(newAccount.getAccountUser().getId(), newAccount.getAccountNumber(), newAccount.getRegisteredAt());

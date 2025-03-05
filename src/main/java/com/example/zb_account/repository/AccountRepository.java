@@ -1,7 +1,11 @@
 package com.example.zb_account.repository;
 
 import com.example.zb_account.domain.Account;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AccountRepository extends CrudRepository<Account, Long> {
+import java.util.Optional;
+
+public interface AccountRepository extends JpaRepository<Account, Long> {
+
+    Optional<Account> findByAccountNumber(String accountNumber);
 }

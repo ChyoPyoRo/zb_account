@@ -25,4 +25,11 @@ public class AccountDetailRepository {
                 .build();
         return accountRepository.save(newAccount);
     }
+
+    public boolean getAccount(String  accountNumber) {
+        if(accountRepository.findByAccountNumber(accountNumber).isEmpty()) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -1,7 +1,7 @@
 package com.example.zb_account.repository;
 
 import com.example.zb_account.domain.Transaction;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TransactionRepository extends CrudRepository<Transaction, Long> {
+public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 }
