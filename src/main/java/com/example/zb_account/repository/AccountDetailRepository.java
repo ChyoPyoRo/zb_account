@@ -26,6 +26,13 @@ public class AccountDetailRepository {
         return accountRepository.save(newAccount);
     }
 
+    public boolean accountMoreThenTen(AccountUser accountUser){
+        if(accountRepository.countByAccountUser(accountUser) >= 10){
+            return true;
+        }
+        return false;
+    }
+
     public boolean getAccount(String  accountNumber) {
         if(accountRepository.findByAccountNumber(accountNumber).isEmpty()) {
             return true;

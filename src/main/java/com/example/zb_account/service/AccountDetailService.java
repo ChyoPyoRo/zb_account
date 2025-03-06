@@ -25,6 +25,9 @@ public class AccountDetailService {
         if(currentAccountUser == null){
             throw new CustomException(CustomError.NO_USER_FOUND);
         }
+        if(accountDetailRepository.accountMoreThenTen(currentAccountUser)){
+            throw new CustomException(CustomError.OVER_ACCOUNT);
+        }
         SecureRandom random = new SecureRandom();
         long randomNumber = 0L;
         while(true){
