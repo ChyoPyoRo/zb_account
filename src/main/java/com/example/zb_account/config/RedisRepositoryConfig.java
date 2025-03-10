@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class RedisRepository {
+public class RedisRepositoryConfig {
     @Value("${spring.data.redis.host}")
     private String redisHost;
 
@@ -16,10 +16,9 @@ public class RedisRepository {
     private int redisPort;
 
     @Bean
-    public RedissonClient redisson() {
+    public RedissonClient redissonClient() {
         Config config = new Config();
         config.useSingleServer().setAddress("redis://" + redisHost + ":" + redisPort);
-
         return Redisson.create(config);
     }
 }

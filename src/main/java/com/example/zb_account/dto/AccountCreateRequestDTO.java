@@ -8,15 +8,15 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class AccountCreateRequestDTO {
-    public Long id;
-    public Long money;
+public class AccountCreateRequestDTO  {
+    public Long userId;
+    public Long initBalance;
 
     public void validate() {
-        if(id == null) {
+        if(userId == null) {
             throw new CustomException(CustomError.NO_BODY);
         }
-        if(money == null || money < 0) {
+        if(initBalance == null || initBalance < 0) {
             throw new CustomException(CustomError.NO_BODY);
         }
     }

@@ -7,12 +7,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 
 @Repository
 public class AccountDetailRepository {
     @Autowired
     private AccountRepository accountRepository;
+
+    public Optional<List<Account>> findAllByAccountName(AccountUser accountUser) {
+        return accountRepository.findAllByAccountUser(accountUser);
+    }
+
+    public void accountStatusUnRegistered(Account account){
+
+        account.setAccountStatus(AccountStatus.UNREGISTERED);
+    }
+
+    public Optional<Account> findValidAccount(String accountNumber, AccountUser accountUser) {
+        return accountRepository.findValidAccount(accountNumber, accountUser);
+    }
 
     public Account createAccount(AccountUser accountUser, String accountNumber, Long money) {
         Account newAccount = Account.builder()

@@ -1,6 +1,8 @@
 package com.example.zb_account.domain;
 
 import com.example.zb_account.type.AccountStatus;
+import com.example.zb_account.type.CustomError;
+import com.example.zb_account.util.CustomException;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -37,5 +39,18 @@ public class Account {
     private LocalDateTime unRegisteredAt;
 
 
+    public void useBalance(Long amount){
+        if(balance < amount){
+            throw new CustomException(CustomError.OVER_AMOUNT);
+        }
+        this.balance = balance - amount;
+    }
+
+    public void cancelBalance(Long amount){
+        if(amount < 0){
+            throw new CustomException(CustomError.INVALID_REQUEST);
+        }
+        this.balance = balance + amount;
+    }
 
 }
